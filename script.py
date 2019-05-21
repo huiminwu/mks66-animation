@@ -115,15 +115,23 @@ def run(filename):
     tmp = new_matrix()
     ident( tmp )
 
-    stack = [ [x[:] for x in tmp] ]
-    screen = new_screen()
-    zbuffer = new_zbuffer()
-    tmp = []
+    #stack = [ [x[:] for x in tmp] ]
+    #screen = new_screen()
+    #zbuffer = new_zbuffer()
+    #tmp = []
     step_3d = 100
     consts = ''
     coords = []
     coords1 = []
     for i, frame in enumerate(frames):
+        tmp = new_matrix()
+        ident( tmp )
+
+
+        stack = [ [x[:] for x in tmp] ]
+        screen = new_screen()
+        zbuffer = new_zbuffer()
+        tmp = []
         for command in commands:
             print command
             c = command['op']
@@ -198,6 +206,6 @@ def run(filename):
                 stack.pop()
             elif c == 'display':
                 display(screen)
-            elif c == 'save':
-                save_extension(screen, args[0])
+        num = format(i, "03")
+        save_extension(screen, "anim/" + name + num + ".png")
         # end operation loop
